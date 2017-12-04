@@ -3,16 +3,15 @@ package org.toastertech.TTScout.frames;
 import javax.swing.*;
 import java.awt.*;
 
-public class CreateMatchFrame extends JFrame{
+public class CreateMatchPanel extends JPanel{
     JLabel     matchNumLabel = new JLabel("Match Number: "), teamNumLabel, scoutNameLabel, eventNameLabel;
     JTextField matchNumField = new JTextField(), teamNumField, scoutNameField, eventNameField;
     JPanel     matchNumPanel, teamNumPanel, scoutNamePanel, eventNamePanels;
 
 
-    public CreateMatchFrame(){
+    public CreateMatchPanel(){
         // Setup
-        setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setSize(800, 800);
         setVisible(true);
         //Add Layout

@@ -1,15 +1,14 @@
 package org.toastertech.TTScout.frames;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class HomeScreen extends JFrame implements ActionListener {
-    JLabel title = new JLabel();
+    JLabel teamLogo = new JLabel();
+    JLabel programHeading = new JLabel("Toaster Scout");
 
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
@@ -19,30 +18,37 @@ public class HomeScreen extends JFrame implements ActionListener {
     public HomeScreen(){
         System.out.println(new File(".").getAbsolutePath());
         //Handling the Basic Background
-        setVisible(true); //Display
         setResizable(false);
-        setSize(600,400); //Screen Size - Should be Resizable
+        //setSize(600,400); //Screen Size - Should be Resizable
         setDefaultCloseOperation(HIDE_ON_CLOSE);
+        //setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-
         //Adding Components
-        setupTeamLogo();
-        add(title);
+        setupTeamLogoAndHeading();
+        add(programHeading);
+        add(teamLogo);
+
 
         setupButtonPanel();
         add(buttonPanel);
 
+        pack();
         repaint();
         revalidate();
+        setVisible(true); //Display
     }
 
-    private void setupTeamLogo(){
+    private void setupTeamLogoAndHeading(){
         File teamLogoFile = new File("src/org/toastertech/TTScout/res/ttlogo.png");
         System.out.println(teamLogoFile.exists());
         ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath());
-        title.setIcon(teamLogo);
+        this.teamLogo.setIcon(teamLogo);
 
+        this.programHeading.setFont(new Font(programHeading.getFont().getName(), programHeading.getFont().getStyle(), 40));
+
+        this.teamLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.programHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     private void setupButtonPanel(){
@@ -65,7 +71,10 @@ public class HomeScreen extends JFrame implements ActionListener {
                 break;
 
             case "Create New Match":
-                new CreateMatchFrame();
+                remove(buttonPanel);
+                add(new CreateMatchPanel());
+                revalidate();
+                repaint();
                 break;
         }
     }
