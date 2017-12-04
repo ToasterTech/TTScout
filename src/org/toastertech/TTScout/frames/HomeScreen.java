@@ -19,9 +19,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         System.out.println(new File(".").getAbsolutePath());
         //Handling the Basic Background
         setResizable(false);
-        //setSize(600,400); //Screen Size - Should be Resizable
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
-        //setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         //Adding Components
