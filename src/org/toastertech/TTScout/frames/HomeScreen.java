@@ -10,6 +10,7 @@ public class HomeScreen extends JFrame implements ActionListener {
     JLabel teamLogo = new JLabel();
     JLabel programHeading = new JLabel("   Toaster Scout   ");
 
+
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
     JButton oldFilesButton = new JButton("Select Saved Match");
@@ -84,8 +85,8 @@ public class HomeScreen extends JFrame implements ActionListener {
             case "Submit New Match Details":
                 if(matchCreatePanel.textIsValid()){
                     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                    dispose();
-                    new ScoutingScreenFrame(matchCreatePanel.getMatch());
+                    dispose(); //Kill Home Screen - Remove and Suffer from Pain
+                    new ScoutingScreenFrame(matchCreatePanel.getMatch()); //Create Home Screen
 
 
                 } else {
