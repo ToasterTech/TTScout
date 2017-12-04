@@ -8,14 +8,17 @@ import java.io.File;
 
 public class HomeScreen extends JFrame implements ActionListener {
     JLabel teamLogo = new JLabel();
-    JLabel programHeading = new JLabel("Toaster Scout");
+    JLabel programHeading = new JLabel("   Toaster Scout   ");
 
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
     JButton oldFilesButton = new JButton("Select Saved Match");
     JButton newFileButton = new JButton("Create New Match");
 
+    CreateMatchPanel matchCreatePanel;
+
     public HomeScreen(){
+        super("Toaster Scout");
         System.out.println(new File(".").getAbsolutePath());
         //Handling the Basic Background
         setResizable(false);
@@ -70,10 +73,24 @@ public class HomeScreen extends JFrame implements ActionListener {
 
             case "Create New Match":
                 remove(buttonPanel);
-                add(new CreateMatchPanel());
+
+                matchCreatePanel = new CreateMatchPanel(this);
+                add(matchCreatePanel);
                 revalidate();
                 repaint();
+                pack();
                 break;
+
+            case "Submit New Match Details":
+                if(matchCreatePanel.textIsValid()){
+                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    dispose();
+                    new ScoutingScreenFrame(matchCreatePanel.getMatch());
+
+
+                } else {
+                    programHeading.setText("INVALID INPUT");
+                }
         }
     }
 
