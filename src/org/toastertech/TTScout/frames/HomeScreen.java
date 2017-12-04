@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class HomeScreen extends JFrame implements ActionListener {
-    JLabel teamLogo = new JLabel();
+    JLabel teamLogoLabel = new JLabel();
     JLabel programHeading = new JLabel("   Toaster Scout   ");
 
 
@@ -29,7 +29,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         //Adding Components
         setupTeamLogoAndHeading();
         add(programHeading);
-        add(teamLogo);
+        add(teamLogoLabel);
 
 
         setupButtonPanel();
@@ -42,15 +42,13 @@ public class HomeScreen extends JFrame implements ActionListener {
     }
 
     private void setupTeamLogoAndHeading(){
-        File teamLogoFile = new File("src/org/toastertech/TTScout/res/ttlogo.png");
-        System.out.println(teamLogoFile.exists());
-        ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath());
-        this.teamLogo.setIcon(teamLogo);
+        ImageIcon teamLogo = new ImageIcon(this.getClass().getClassLoader().getResource("ttlogo.png"));
+        teamLogoLabel.setIcon(teamLogo);
 
-        this.programHeading.setFont(new Font(programHeading.getFont().getName(), programHeading.getFont().getStyle(), 40));
+        programHeading.setFont(new Font(programHeading.getFont().getName(), programHeading.getFont().getStyle(), 40));
 
-        this.teamLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.programHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
+        teamLogoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        programHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     private void setupButtonPanel(){
