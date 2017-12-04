@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class HomeScreen extends JFrame implements ActionListener {
-    JLabel title = new JLabel("Toaster Scout");
+    JLabel title = new JLabel();
 
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
@@ -27,7 +27,6 @@ public class HomeScreen extends JFrame implements ActionListener {
 
 
         //Adding Components
-        //title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 40));
         setupTeamLogo();
         add(title);
 
@@ -40,7 +39,6 @@ public class HomeScreen extends JFrame implements ActionListener {
 
     private void setupTeamLogo(){
         File teamLogoFile = new File("src/org/toastertech/TTScout/res/ttlogo.png");
-
         System.out.println(teamLogoFile.exists());
         ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath());
         title.setIcon(teamLogo);
