@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class HomeScreen extends JFrame implements ActionListener {
-    JLabel title = new JLabel("Toaster Scout");
+    JLabel title = new JLabel();
 
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
@@ -34,22 +34,21 @@ public class HomeScreen extends JFrame implements ActionListener {
         setupButtonPanel();
         add(buttonPanel);
 
+        //DO NOT REMOVE. I don't know why, this is the only way stuff will show up
+        //Remove and the Citadel of Ricks will come for you
         repaint();
         revalidate();
     }
 
     private void setupTeamLogo(){
-        File teamLogoFile = new File("src/org/toastertech/TTScout/res/ttlogo.png");
-
-        System.out.println(teamLogoFile.exists());
-        ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath());
-        title.setIcon(teamLogo);
+        File teamLogoFile = new File("res/ttlogo.png"); //This establishes a link to the logo file
+        System.out.println(teamLogoFile.exists()); //Tells us if it actually sees the picture file
+        ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath()); //This creates the Image for Swing
+        title.setIcon(teamLogo); //We display the logo!
 
     }
 
     private void setupButtonPanel(){
-
-
         oldFilesButton.addActionListener(this);
         newFileButton.addActionListener(this);
 
