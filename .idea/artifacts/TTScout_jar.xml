@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TTScout:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TTScout_jar</output-path>
+    <root id="archive" name="TTScout.jar">
+      <element id="module-output" name="TTScout" />
+    </root>
+  </artifact>
+</component>

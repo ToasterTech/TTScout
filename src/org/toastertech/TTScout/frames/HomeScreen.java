@@ -20,25 +20,30 @@ public class HomeScreen extends JFrame implements ActionListener {
         System.out.println(new File(".").getAbsolutePath());
         //Handling the Basic Background
         setVisible(true); //Display
+        setResizable(false);
         setSize(600,400); //Screen Size - Should be Resizable
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
 
-
         //Adding Components
-        title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 40));
+        //title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 40));
+        setupTeamLogo();
         add(title);
 
         setupButtonPanel();
         add(buttonPanel);
+
+        repaint();
+        revalidate();
     }
 
-    private void setupTeamLogo() throws Exception{
-        //BufferedImage bufferedImage = ImageIO.read(this.getClass().getClassLoader().getResource("org/toastertech/TTScout/res/ttlogo.png"));
-        //Image image = bufferedImage.getScaledInstance(400,400, Image.SCALE_SMOOTH);
+    private void setupTeamLogo(){
+        File teamLogoFile = new File("src/org/toastertech/TTScout/res/ttlogo.png");
 
-
+        System.out.println(teamLogoFile.exists());
+        ImageIcon teamLogo = new ImageIcon(teamLogoFile.getPath());
+        title.setIcon(teamLogo);
 
     }
 
