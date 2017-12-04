@@ -9,7 +9,7 @@ import java.io.File;
 public class HomeScreen extends JFrame implements ActionListener {
     JLabel teamLogoLabel = new JLabel();
     JLabel programHeading = new JLabel("   Toaster Scout   ");
-
+    //Comment to test Discord Bot
 
     JPanel buttonPanel = new JPanel(new FlowLayout());
 
