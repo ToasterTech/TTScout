@@ -85,7 +85,7 @@ public class CreateMatchPanel extends JPanel implements ActionListener{
             Integer.valueOf(teamNumField.getText().toString()); // Same Question
 
             //Is there nothing in either of these fields?
-            if(scoutNameField.getText().length() <= 0 || eventNameField.getText().length() <= 0){
+            if(scoutNameField.getText().length() <= 0){
                 throw new Exception(); //This will throw an exception, letting us know that we need to change the input.
             }
         } catch(Exception e){
