@@ -1,5 +1,7 @@
 package org.toastertech.TTScout.frames;
 
+import org.toastertech.TTScout.panels.CreateMatchPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
