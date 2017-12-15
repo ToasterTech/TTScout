@@ -22,7 +22,6 @@ public class HomeScreen extends JFrame implements ActionListener {
 
     public HomeScreen(){
         super("Toaster Scout");
-        System.out.println(new File(".").getAbsolutePath());
         //Handling the Basic Background
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
