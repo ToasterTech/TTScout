@@ -53,4 +53,9 @@ public class Match {
     public void setCompetitionName(String competitionName) {
         this.competitionName = competitionName;
     }
+
+    @Override
+    public String toString() {
+        return "Match Number: " + matchNum + "\nTeam Number: " + teamNum + "\nScout Name: " + scoutName;
+    }
 }
