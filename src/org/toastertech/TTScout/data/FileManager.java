@@ -51,9 +51,11 @@ public class FileManager {
      * This will pretty much create our directory. It launches the FIle Chooser.
      */
     public static void setupDirectory(){
+        FileManager.currentDirectory = new File(System.getProperty("user.dir"));
 
-        JFileChooser fileChooser = new JFileChooser();
+        /*JFileChooser fileChooser = new JFileChooser();
         int result;
+
 
         do {
             fileChooser.setDialogTitle("Select a Place to Save the Files: ");
@@ -62,7 +64,8 @@ public class FileManager {
             result = fileChooser.showOpenDialog(new JDialog());
         } while(result != JFileChooser.APPROVE_OPTION);
 
-        currentDirectory = fileChooser.getSelectedFile();
+        currentDirectory = fileChooser.getSelectedFile();*/
+
     }
 
     /**
@@ -79,7 +82,7 @@ public class FileManager {
 
 
         for(Match match : currentMatches){
-            writer.write(match);
+            writer.write(match, parameterNames, processors);
         }
 
         writer.close();
@@ -92,15 +95,28 @@ public class FileManager {
     public static void readFile() throws Exception{
         currentFile = new File(currentDirectory, currentCompetition + ".csv");
 
+        if(!currentFile.exists()){
+
+            return;
+        }
         ICsvBeanReader reader = new CsvBeanReader(new FileReader(currentFile), CsvPreference.STANDARD_PREFERENCE);
         reader.getHeader(true);
 
         Match currentMatch;
 
-        while((currentMatch = reader.read(Match.class, null, processors)) != null){
+        while((currentMatch = reader.read(Match.class, parameterNames, processors)) != null){
+
             currentMatches.add(currentMatch);
+
+
         }
 
         reader.close();
+    }
+
+    public static void printSavedMatches(){
+        for(Match match : currentMatches){
+            System.out.println(match.toString());
+        }
     }
 }

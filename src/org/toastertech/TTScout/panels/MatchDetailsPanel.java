@@ -39,4 +39,18 @@ public class MatchDetailsPanel extends JPanel {
         add(teamNumLabel);
         add(teamNumField);
     }
+
+    public void updatePanel(Match match){
+        matchNumField  .setText(String.valueOf(match.getMatchNum()));
+        teamNumField   .setText(String.valueOf(match.getTeamNum()));
+        scoutNameField .setText(match.getScoutName());
+
+        repaint();
+        revalidate();
+    }
+
+    public String[] getValues(){
+        String[] returnArray = {matchNumField.getText(), teamNumField.getText(), scoutNameField.getText()};
+        return returnArray;
+    }
 }

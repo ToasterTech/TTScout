@@ -1,5 +1,6 @@
 package org.toastertech.TTScout.frames;
 
+import org.toastertech.TTScout.data.FileManager;
 import org.toastertech.TTScout.panels.CreateMatchPanel;
 
 import javax.swing.*;
@@ -85,7 +86,17 @@ public class HomeScreen extends JFrame implements ActionListener {
                 if(matchCreatePanel.textIsValid()){
                     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     dispose(); //Kill Home Screen - Remove and Suffer from Pain
-                    new ScoutingScreenFrame(matchCreatePanel.getMatch()); //Create Home Screen
+
+                    FileManager.currentCompetition = matchCreatePanel.getMatch().getCompetitionName();
+
+                    try {
+                        FileManager.readFile();
+                    } catch (Exception error){
+                        JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), "Error", JOptionPane.OK_OPTION);
+                    }
+
+                    FileManager.currentMatches.add(matchCreatePanel.getMatch());
+                    new ScoutingScreenFrame(FileManager.currentMatches.get(FileManager.currentMatches.size()-1)); //Create Home Screen
 
 
                 } else {
