@@ -1,5 +1,6 @@
 package org.toastertech.TTScout.frames;
 
+import jdk.nashorn.internal.scripts.JO;
 import org.toastertech.TTScout.data.FileManager;
 import org.toastertech.TTScout.panels.CreateMatchPanel;
 
@@ -70,6 +71,22 @@ public class HomeScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "Select Saved Match":
+                String[] competitions = {"Gainesville", "Dalton", "Albany", "Columbus", "Duluth", "State", "World's"};
+                String result = (String)JOptionPane.showInputDialog(new JDialog(), "Select a Competition: ", "Hi", JOptionPane.PLAIN_MESSAGE,
+                        null, competitions, null);
+
+                if(new File(System.getProperty("user.dir"), result + ".csv").exists()){
+                    FileManager.currentCompetition = result;
+                    try {
+                        FileManager.readFile();
+                        new ScoutingScreenFrame(FileManager.currentMatches.get(0));
+                    } catch (Exception error){
+                        JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), null, JOptionPane.OK_CANCEL_OPTION);
+                    }
+
+                } else {
+                    JOptionPane.showConfirmDialog(new JDialog(), "Competition Does Not Exist");
+                }
 
                 break;
 
@@ -105,5 +122,7 @@ public class HomeScreen extends JFrame implements ActionListener {
                 }
         }
     }
+
+
 
 }

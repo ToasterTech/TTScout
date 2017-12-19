@@ -52,20 +52,6 @@ public class FileManager {
      */
     public static void setupDirectory(){
         FileManager.currentDirectory = new File(System.getProperty("user.dir"));
-
-        /*JFileChooser fileChooser = new JFileChooser();
-        int result;
-
-
-        do {
-            fileChooser.setDialogTitle("Select a Place to Save the Files: ");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            result = fileChooser.showOpenDialog(new JDialog());
-        } while(result != JFileChooser.APPROVE_OPTION);
-
-        currentDirectory = fileChooser.getSelectedFile();*/
-
     }
 
     /**
