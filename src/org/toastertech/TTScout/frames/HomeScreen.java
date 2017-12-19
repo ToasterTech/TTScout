@@ -37,6 +37,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         setupButtonPanel();
         add(buttonPanel);
 
+
         pack();
         repaint();
         revalidate();
