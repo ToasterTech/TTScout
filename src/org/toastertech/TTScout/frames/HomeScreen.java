@@ -66,13 +66,13 @@ public class HomeScreen extends JFrame implements ActionListener {
     private void setupButtonPanel(){
 
         oldFilesButton.setFocusable(false);
-        newFileButton.setFocusable(false);
+        //newFileButton.setFocusable(false);
 
         oldFilesButton.addActionListener(this);
-        newFileButton.addActionListener(this);
+        //newFileButton.addActionListener(this);
 
         buttonPanel.add(oldFilesButton);
-        buttonPanel.add(newFileButton);
+        //buttonPanel.add(newFileButton);
 
         add(buttonPanel);
     }
@@ -85,51 +85,16 @@ public class HomeScreen extends JFrame implements ActionListener {
                 String result = (String)JOptionPane.showInputDialog(new JDialog(), "Select a Competition: ", "Hi", JOptionPane.PLAIN_MESSAGE,
                         null, competitions, null);
 
-                if(new File(System.getProperty("user.dir"), result + ".csv").exists()){
-                    FileManager.currentCompetition = result;
-                    try {
-                        FileManager.readFile();
-                        new ScoutingScreenFrame(FileManager.currentMatches.get(0));
-                    } catch (Exception error){
-                        JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), null, JOptionPane.OK_CANCEL_OPTION);
-                    }
+                FileManager.currentCompetition = result;
 
-                } else {
-                    JOptionPane.showConfirmDialog(new JDialog(), "Competition Does Not Exist");
+                try {
+                    FileManager.readFile();
+                    new ScoutingScreenFrame(FileManager.currentMatches.get(0));
+                } catch (Exception error){
+                    JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), null, JOptionPane.OK_CANCEL_OPTION);
                 }
 
                 break;
-
-            case "Create New Match":
-                remove(buttonPanel);
-
-                matchCreatePanel = new CreateMatchPanel(this);
-                add(matchCreatePanel);
-                revalidate();
-                repaint();
-                pack();
-                break;
-
-            case "Submit New Match Details":
-                if(matchCreatePanel.textIsValid()){
-                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                    dispose(); //Kill Home Screen - Remove and Suffer from Pain
-
-                    FileManager.currentCompetition = matchCreatePanel.getMatch().getCompetitionName();
-
-                    try {
-                        FileManager.readFile();
-                    } catch (Exception error){
-                        JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), "Error", JOptionPane.OK_OPTION);
-                    }
-
-                    FileManager.currentMatches.add(matchCreatePanel.getMatch());
-                    new ScoutingScreenFrame(FileManager.currentMatches.get(FileManager.currentMatches.size()-1)); //Create Home Screen
-
-
-                } else {
-                    programHeading.setText("INVALID INPUT");
-                }
         }
     }
 
