@@ -35,9 +35,16 @@ public class HomeScreen extends JFrame implements ActionListener {
         add(teamLogoLabel);
 
 
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }catch (Exception e){
+
+        }
+
         setupButtonPanel();
         add(buttonPanel);
 
+        getContentPane().setBackground(Color.BLACK);
 
         pack();
         repaint();
@@ -50,6 +57,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         teamLogoLabel.setIcon(teamLogo);
 
         programHeading.setFont(new Font(programHeading.getFont().getName(), programHeading.getFont().getStyle(), 40));
+        programHeading.setForeground(Color.WHITE);
 
         teamLogoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         programHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -57,6 +65,8 @@ public class HomeScreen extends JFrame implements ActionListener {
 
     private void setupButtonPanel(){
 
+        oldFilesButton.setFocusable(false);
+        newFileButton.setFocusable(false);
 
         oldFilesButton.addActionListener(this);
         newFileButton.addActionListener(this);
