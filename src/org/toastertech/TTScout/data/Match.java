@@ -8,18 +8,79 @@ public class Match {
     private String scoutName;
     private String competitionName;
 
+    //Stuff for Power Up
+    private int scaleStatus,
+                switchStatus,
+                autoLine,
+                blocksOnOwnSwitch,
+                blocksOnOppositeSwitch,
+                blocksOnScale,
+                blocksInVault,
+                attemptedClimb,
+                completedClimb,
+                parkedOnRamp,
+                pilePowerCube,
+                switchPowerCube,
+                exchangePowerCube,
+                portalPowerCube,
+                defensiveRating,
+                regularFoul,
+                techFoul,
+                yellowCard;
+
     public Match(){ // SuperCSV Writer
         matchNum = 0;
         teamNum = 0;
         scoutName = "";
         competitionName = "";
+
+        this.scaleStatus            = 0;
+        this.switchStatus           = 0;
+        this.autoLine               = 0;
+        this.blocksOnOwnSwitch      = 0;
+        this.blocksOnOppositeSwitch = 0;
+        this.blocksOnScale          = 0;
+        this.blocksInVault          = 0;
+        this.attemptedClimb         = 0;
+        this.completedClimb         = 0;
+        this.parkedOnRamp           = 0;
+        this.pilePowerCube          = 0;
+        this.switchPowerCube        = 0;
+        this.exchangePowerCube      = 0;
+        this.portalPowerCube        = 0;
+        this.defensiveRating        = 0;
+        this.regularFoul            = 0;
+        this.techFoul               = 0;
+        this.yellowCard             = 0;
+
     }
+
+
 
     public Match(int matchNum, int teamNum, String scoutName, String competitionName) { // Human-Used
         this.matchNum = matchNum;
         this.teamNum = teamNum;
         this.scoutName = scoutName;
         this.competitionName = competitionName;
+
+        this.scaleStatus            = 0;
+        this.switchStatus           = 0;
+        this.autoLine               = 0;
+        this.blocksOnOwnSwitch      = 0;
+        this.blocksOnOppositeSwitch = 0;
+        this.blocksOnScale          = 0;
+        this.blocksInVault          = 0;
+        this.attemptedClimb         = 0;
+        this.completedClimb         = 0;
+        this.parkedOnRamp           = 0;
+        this.pilePowerCube          = 0;
+        this.switchPowerCube        = 0;
+        this.exchangePowerCube      = 0;
+        this.portalPowerCube        = 0;
+        this.defensiveRating        = 0;
+        this.regularFoul            = 0;
+        this.techFoul               = 0;
+        this.yellowCard             = 0;
     }
 
     public int getMatchNum() {
@@ -57,5 +118,152 @@ public class Match {
     @Override
     public String toString() {
         return "Match Number: " + matchNum + "\nTeam Number: " + teamNum + "\nScout Name: " + scoutName;
+    }
+
+
+    //FIRST Power Up Stuff
+
+    public int getScaleStatus() {
+        return scaleStatus;
+    }
+
+    public void setScaleStatus(int scaleStatus) {
+        this.scaleStatus = scaleStatus;
+    }
+
+    public int getSwitchStatus() {
+        return switchStatus;
+    }
+
+    public void setSwitchStatus(int switchStatus) {
+        this.switchStatus = switchStatus;
+    }
+
+    public int getAutoLine() {
+        return autoLine;
+    }
+
+    public void setAutoLine(int autoLine) {
+        this.autoLine = autoLine;
+    }
+
+    public int getBlocksOnOwnSwitch() {
+        return blocksOnOwnSwitch;
+    }
+
+    public void setBlocksOnOwnSwitch(int blocksOnOwnSwitch) {
+        this.blocksOnOwnSwitch = blocksOnOwnSwitch;
+    }
+
+    public int getBlocksOnOppositeSwitch() {
+        return blocksOnOppositeSwitch;
+    }
+
+    public void setBlocksOnOppositeSwitch(int blocksOnOppositeSwitch) {
+        this.blocksOnOppositeSwitch = blocksOnOppositeSwitch;
+    }
+
+    public int getBlocksOnScale() {
+        return blocksOnScale;
+    }
+
+    public void setBlocksOnScale(int blocksOnScale) {
+        this.blocksOnScale = blocksOnScale;
+    }
+
+    public int getBlocksInVault() {
+        return blocksInVault;
+    }
+
+    public void setBlocksInVault(int blocksInVault) {
+        this.blocksInVault = blocksInVault;
+    }
+
+    public int getAttemptedClimb() {
+        return attemptedClimb;
+    }
+
+    public void setAttemptedClimb(int attemptedClimb) {
+        this.attemptedClimb = attemptedClimb;
+    }
+
+    public int getCompletedClimb() {
+        return completedClimb;
+    }
+
+    public void setCompletedClimb(int completedClimb) {
+        this.completedClimb = completedClimb;
+    }
+
+    public int getParkedOnRamp() {
+        return parkedOnRamp;
+    }
+
+    public void setParkedOnRamp(int parkedOnRamp) {
+        this.parkedOnRamp = parkedOnRamp;
+    }
+
+    public int getPilePowerCube() {
+        return pilePowerCube;
+    }
+
+    public void setPilePowerCube(int pilePowerCube) {
+        this.pilePowerCube = pilePowerCube;
+    }
+
+    public int getSwitchPowerCube() {
+        return switchPowerCube;
+    }
+
+    public void setSwitchPowerCube(int switchPowerCube) {
+        this.switchPowerCube = switchPowerCube;
+    }
+
+    public int getExchangePowerCube() {
+        return exchangePowerCube;
+    }
+
+    public void setExchangePowerCube(int exchangePowerCube) {
+        this.exchangePowerCube = exchangePowerCube;
+    }
+
+    public int getPortalPowerCube() {
+        return portalPowerCube;
+    }
+
+    public void setPortalPowerCube(int portalPowerCube) {
+        this.portalPowerCube = portalPowerCube;
+    }
+
+    public int getDefensiveRating() {
+        return defensiveRating;
+    }
+
+    public void setDefensiveRating(int defensiveRating) {
+        this.defensiveRating = defensiveRating;
+    }
+
+    public int getRegularFoul() {
+        return regularFoul;
+    }
+
+    public void setRegularFoul(int regularFoul) {
+        this.regularFoul = regularFoul;
+    }
+
+    public int getTechFoul() {
+        return techFoul;
+    }
+
+    public void setTechFoul(int techFoul) {
+        this.techFoul = techFoul;
+    }
+
+    public int getYellowCard() {
+        return yellowCard;
+    }
+
+    public void setYellowCard(int yellowCard) {
+        this.yellowCard = yellowCard;
     }
 }
