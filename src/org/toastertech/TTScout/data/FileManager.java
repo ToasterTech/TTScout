@@ -82,7 +82,8 @@ public class FileManager {
         currentFile = new File(currentDirectory, currentCompetition + ".csv");
 
         if(!currentFile.exists()){
-
+            writeFile();
+            currentMatches.add(new Match());
             return;
         }
         ICsvBeanReader reader = new CsvBeanReader(new FileReader(currentFile), CsvPreference.STANDARD_PREFERENCE);

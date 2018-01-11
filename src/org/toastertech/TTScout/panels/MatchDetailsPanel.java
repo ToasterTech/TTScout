@@ -3,6 +3,7 @@ package org.toastertech.TTScout.panels;
 import org.toastertech.TTScout.data.Match;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MatchDetailsPanel extends JPanel {
     JLabel matchNumLabel,
@@ -38,6 +39,9 @@ public class MatchDetailsPanel extends JPanel {
         add(scoutNameField);
         add(teamNumLabel);
         add(teamNumField);
+
+        //setBackground(Color.BLACK);
+        //setBackground(new Color(38, 114, 164));
     }
 
     public void updatePanel(Match match){

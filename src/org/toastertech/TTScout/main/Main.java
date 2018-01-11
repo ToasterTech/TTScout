@@ -12,10 +12,9 @@ public class Main {
 
         try {
             FileManager.setupDirectory();
+            new HomeScreen();
         } catch (Exception e){
             JOptionPane.showConfirmDialog(new JDialog(), e.getMessage());
         }
-
-        new HomeScreen();
     }
 }

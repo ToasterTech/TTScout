@@ -1,6 +1,7 @@
 package org.toastertech.TTScout.panels;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class BrowsingPanel extends JPanel {
@@ -8,11 +9,14 @@ public class BrowsingPanel extends JPanel {
             nextMatchButton     = new JButton("Next Match");
 
     public BrowsingPanel(ActionListener callingFrame){
+        super();
         previousMatchButton.addActionListener(callingFrame);
         nextMatchButton.addActionListener(callingFrame);
 
         add(previousMatchButton);
         add(nextMatchButton);
+
+
     }
 
 }
