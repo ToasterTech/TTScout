@@ -141,6 +141,10 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         teleopScaleBricks.setValue(newMatch.getBlocksOnScale());
         teleopVaultBricks.setValue(newMatch.getBlocksInVault());
 
+        autoScoringPanel.setResults(newMatch.getAutoScaleStatus(), newMatch.getAutoSwitchStatus(), newMatch.getAutoLine());
+        climbPanel.setResults(newMatch.getAttemptedClimb(), newMatch.getCompletedClimb(), newMatch.getParkedOnRamp());
+        powerCubePanel.setResults(newMatch.getPilePowerCube(), newMatch.getSwitchPowerCube(), newMatch.getExchangePowerCube(), newMatch.getPortalPowerCube());
+
         //REMOVE THESE METHODS AND ENACT THE WRATH OF CHITULU
         revalidate();
         repaint();
@@ -212,6 +216,19 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         currentMatch.setBlocksOnOppositeSwitch(teleopOppositeAllianceSwitchBricks.getValue());
         currentMatch.setBlocksOnScale(teleopScaleBricks.getValue());
         currentMatch.setBlocksInVault(teleopVaultBricks.getValue());
+
+        currentMatch.setAutoScaleStatus(autoScoringPanel.getResults()[0]);
+        currentMatch.setAutoSwitchStatus(autoScoringPanel.getResults()[1]);
+        currentMatch.setAutoLine(autoScoringPanel.getResults()[2]);
+
+        currentMatch.setAttemptedClimb(climbPanel.getResults()[0]);
+        currentMatch.setCompletedClimb(climbPanel.getResults()[1]);
+        currentMatch.setParkedOnRamp(climbPanel.getResults()[2]);
+
+        currentMatch.setPilePowerCube(powerCubePanel.getResults()[0]);
+        currentMatch.setSwitchPowerCube(powerCubePanel.getResults()[1]);
+        currentMatch.setExchangePowerCube(powerCubePanel.getResults()[2]);
+        currentMatch.setPortalPowerCube(powerCubePanel.getResults()[3]);
 
         // Just a precaution cause Jonathan is paranoid
         FileManager.currentMatches.set(currentMatchIndex, currentMatch);

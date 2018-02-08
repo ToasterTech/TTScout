@@ -43,6 +43,16 @@ public class MultipleCheckboxPanel extends JPanel {
 
     }
 
+    public void setResults(int ... results){
+        for(int i = 0; i < results.length; i++){
+            if(results[i] == 1){
+                checkBoxes[i].setSelected(true);
+            } else {
+                checkBoxes[i].setSelected(false);
+            }
+        }
+    }
+
     public int[] getResults(){
         int[] returnArray = new int[checkBoxes.length];
 
