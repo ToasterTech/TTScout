@@ -144,7 +144,10 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         autoScoringPanel.setResults(newMatch.getAutoScaleStatus(), newMatch.getAutoSwitchStatus(), newMatch.getAutoLine());
         climbPanel.setResults(newMatch.getAttemptedClimb(), newMatch.getCompletedClimb(), newMatch.getParkedOnRamp());
         powerCubePanel.setResults(newMatch.getPilePowerCube(), newMatch.getSwitchPowerCube(), newMatch.getExchangePowerCube(), newMatch.getPortalPowerCube());
+        foulsObtained.setResults(newMatch.getRegularFoul(), newMatch.getTechFoul(), newMatch.getYellowCard());
 
+
+        defensePanel.setCurrentRating(newMatch.getDefensiveRating());
         //REMOVE THESE METHODS AND ENACT THE WRATH OF CHITULU
         revalidate();
         repaint();
@@ -171,7 +174,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         if(currentMatchIndex > 0){ //If this isn't the first match, then we can keep going backwards.
             currentMatchIndex -= 1;
         } else {
-            JOptionPane.showConfirmDialog(new JDialog(), "This is your first match. So, you can't move back.");
+            JOptionPane.showMessageDialog(new JDialog(), "This is your first match. So, you can't move back.", "Alert", JOptionPane.PLAIN_MESSAGE, null);
         }
 
         reconfigureWidgets();
@@ -229,6 +232,12 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         currentMatch.setSwitchPowerCube(powerCubePanel.getResults()[1]);
         currentMatch.setExchangePowerCube(powerCubePanel.getResults()[2]);
         currentMatch.setPortalPowerCube(powerCubePanel.getResults()[3]);
+
+        currentMatch.setRegularFoul(foulsObtained.getResults()[0]);
+        currentMatch.setTechFoul(foulsObtained.getResults()[1]);
+        currentMatch.setYellowCard(foulsObtained.getResults()[2]);
+
+        currentMatch.setDefensiveRating(defensePanel.getCurrentRating());
 
         // Just a precaution cause Jonathan is paranoid
         FileManager.currentMatches.set(currentMatchIndex, currentMatch);

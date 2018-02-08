@@ -30,6 +30,10 @@ public class RatingPanel extends JPanel {
         add(slider);
     }
 
+    public void setCurrentRating(int number){
+        slider.setValue(number);
+    }
+
     public int getCurrentRating(){
         return slider.getValue();
     }
