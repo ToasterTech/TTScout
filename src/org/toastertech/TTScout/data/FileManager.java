@@ -35,9 +35,19 @@ public class FileManager {
      */
     public static String currentCompetition;
 
-    static String[] spreadsheetHeaders = {"Match Number", "Team Number", "Scout Name"};
-    static String[] parameterNames = {"matchNum", "teamNum", "scoutName"};
-    static CellProcessor[] processors = {new ParseInt(), new ParseInt(), new ConvertNullTo("")};
+    static String[] spreadsheetHeaders = {"Match Number", "Team Number", "Scout Name", "Auto Scale Status", "Auto Switch",
+                                            "Auto Line Status", "Blocks on Own Switch", "Blocks On Opposite Switch",
+                                            "Blocks On Scale", "Blocks In Vault", "Attempted Climb", "Completed Climb",
+                                            "Parked on Ramp", "Power Cube Pile", "Power Cube from Swtich", "Power Cube from Exchange",
+                                            "Power cube from Portal", "Defensive Rating", "Regular Foul", "Tech Foul", "Yellow Card"};
+
+    static String[] parameterNames = {"matchNum", "teamNum", "scoutName", "autoScaleStatus", "autoSwitchStatus", "autoLine", "blocksOnOwnSwitch",
+                                    "blocksOnOppositeSwitch", "blocksOnScale", "blocksInVault", "attemptedClimb", "completedClimb", "parkedOnRamp",
+                                    "pilePowerCube", "switchPowerCube", "exchangePowerCube", "portalPowerCube", "defensiveRating", "regularFoul",
+                                    "techFoul", "yellowCard"};
+    static CellProcessor[] processors = {new ParseInt(), new ParseInt(), new ConvertNullTo(""), new ParseInt(), new ParseInt(),
+            new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(),
+            new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt()};
 
     /**
      * Constructor is private so we can't make instances of this. Instead, we will cass our functions
@@ -81,6 +91,7 @@ public class FileManager {
     public static void readFile() throws Exception{
         currentFile = new File(currentDirectory, currentCompetition + ".csv");
 
+
         if(!currentFile.exists()){
             writeFile();
             currentMatches.add(new Match());
@@ -99,6 +110,7 @@ public class FileManager {
         }
 
         reader.close();
+
     }
 
     public static void printSavedMatches(){

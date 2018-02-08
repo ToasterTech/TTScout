@@ -18,7 +18,9 @@ public class NumberInputPanel extends JPanel implements ActionListener {
 
         subtract1Button = new JButton("Subtract 1 " + commandName);
         add1Button      = new JButton("Add 1 " + commandName);
+
         numericalTextField = new JTextField((String.valueOf(defaultValue)), 1);
+        numericalTextField.setEditable(false);
         setBorder(BorderFactory.createTitledBorder(title));
 
         add(subtract1Button);
@@ -31,12 +33,20 @@ public class NumberInputPanel extends JPanel implements ActionListener {
 
     }
 
+    public void setValue(int number){
+        numericalTextField.setText(String.valueOf(number));
+    }
+
+    public int getValue(){
+        return Integer.valueOf(numericalTextField.getText());
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Subtract 1 " + commandEnder)){
-
+            numericalTextField.setText(String.valueOf(Integer.valueOf(numericalTextField.getText()) - 1));
         } else if(e.getActionCommand().equals("Add 1 " + commandEnder)){
-
+            numericalTextField.setText(String.valueOf(Integer.valueOf(numericalTextField.getText()) + 1));
         }
     }
 }

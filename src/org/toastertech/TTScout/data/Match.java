@@ -9,8 +9,8 @@ public class Match {
     private String competitionName;
 
     //Stuff for Power Up
-    private int scaleStatus,
-                switchStatus,
+    private int autoScaleStatus,
+            autoSwitchStatus,
                 autoLine,
                 blocksOnOwnSwitch,
                 blocksOnOppositeSwitch,
@@ -34,8 +34,8 @@ public class Match {
         scoutName = "";
         competitionName = "";
 
-        this.scaleStatus            = 0;
-        this.switchStatus           = 0;
+        this.autoScaleStatus = 0;
+        this.autoSwitchStatus = 0;
         this.autoLine               = 0;
         this.blocksOnOwnSwitch      = 0;
         this.blocksOnOppositeSwitch = 0;
@@ -63,8 +63,8 @@ public class Match {
         this.scoutName = scoutName;
         this.competitionName = competitionName;
 
-        this.scaleStatus            = 0;
-        this.switchStatus           = 0;
+        this.autoScaleStatus = 0;
+        this.autoSwitchStatus = 0;
         this.autoLine               = 0;
         this.blocksOnOwnSwitch      = 0;
         this.blocksOnOppositeSwitch = 0;
@@ -123,20 +123,20 @@ public class Match {
 
     //FIRST Power Up Stuff
 
-    public int getScaleStatus() {
-        return scaleStatus;
+    public int getAutoScaleStatus() {
+        return autoScaleStatus;
     }
 
-    public void setScaleStatus(int scaleStatus) {
-        this.scaleStatus = scaleStatus;
+    public void setAutoScaleStatus(int autoScaleStatus) {
+        this.autoScaleStatus = autoScaleStatus;
     }
 
-    public int getSwitchStatus() {
-        return switchStatus;
+    public int getAutoSwitchStatus() {
+        return autoSwitchStatus;
     }
 
-    public void setSwitchStatus(int switchStatus) {
-        this.switchStatus = switchStatus;
+    public void setAutoSwitchStatus(int autoSwitchStatus) {
+        this.autoSwitchStatus = autoSwitchStatus;
     }
 
     public int getAutoLine() {

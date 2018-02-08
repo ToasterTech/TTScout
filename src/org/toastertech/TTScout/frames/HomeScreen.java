@@ -2,6 +2,7 @@ package org.toastertech.TTScout.frames;
 
 import jdk.nashorn.internal.scripts.JO;
 import org.toastertech.TTScout.data.FileManager;
+import org.toastertech.TTScout.data.Match;
 import org.toastertech.TTScout.panels.CreateMatchPanel;
 
 import javax.swing.*;
@@ -25,7 +26,7 @@ public class HomeScreen extends JFrame implements ActionListener {
     public HomeScreen(){
         super("Toaster Scout");
         //Handling the Basic Background
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -47,8 +48,8 @@ public class HomeScreen extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.BLACK);
 
         pack();
-        repaint();
-        revalidate();
+        //repaint();
+        //revalidate();
         setVisible(true); //Display
     }
 
@@ -86,11 +87,13 @@ public class HomeScreen extends JFrame implements ActionListener {
                         null, competitions, null);
 
                 FileManager.currentCompetition = result;
+                dispose();
 
                 try {
                     FileManager.readFile();
                     new ScoutingScreenFrame(FileManager.currentMatches.get(0));
                 } catch (Exception error){
+                    System.out.println(error.getMessage());
                     JOptionPane.showConfirmDialog(new JDialog(), error.getMessage(), null, JOptionPane.OK_CANCEL_OPTION);
                 }
 

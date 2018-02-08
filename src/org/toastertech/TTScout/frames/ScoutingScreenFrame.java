@@ -21,7 +21,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
     MultipleCheckboxPanel autoScoringPanel;
     NumberInputPanel      teleopOwnAllianceSwitchBricks;
     NumberInputPanel      teleopOppositeAllianceSwitchBricks;
-    NumberInputPanel      teleopOwnAllianceScaleBricks;
+    NumberInputPanel teleopScaleBricks;
     NumberInputPanel      teleopVaultBricks;
     MultipleCheckboxPanel powerCubePanel;
     MultipleCheckboxPanel climbPanel;
@@ -36,7 +36,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 800);
+        //setSize(800, 800);
 
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         //setLayout(new GridLayout(3, 3));
@@ -47,10 +47,11 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
 
         matchDetailsPanel = new MatchDetailsPanel(match);
 
+
         autoScoringPanel = new MultipleCheckboxPanel("Auto Score", "Scale", "Switch", "Auto Line");
         teleopOwnAllianceSwitchBricks = new NumberInputPanel("Number of Blocks on Own Switch", "Block", 0);
         teleopOppositeAllianceSwitchBricks = new NumberInputPanel("Number of Blocks on Opposite Switch", "Block", 0);
-        teleopOwnAllianceScaleBricks = new NumberInputPanel("Number of Blocks on Scale", "Block", 0);
+        teleopScaleBricks = new NumberInputPanel("Number of Blocks on Scale", "Block", 0);
         teleopVaultBricks = new NumberInputPanel("Number of Blocks in Vault", "Block", 0);
         climbPanel = new MultipleCheckboxPanel("Climb Status:", "Attempted Climb", "Climbed", "Parked");
         powerCubePanel = new MultipleCheckboxPanel( "Location of Power Cube Pickups", "Pile", "Switch", "Exchange", "Portal");
@@ -87,7 +88,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         mainPanel.add(teleopOppositeAllianceSwitchBricks, constraints);
         incrementConstrainst();
 
-        mainPanel.add(teleopOwnAllianceScaleBricks, constraints);
+        mainPanel.add(teleopScaleBricks, constraints);
         incrementConstrainst();
 
         mainPanel.add(teleopVaultBricks, constraints);
@@ -104,6 +105,10 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
 
         mainPanel.add(foulsObtained, constraints);
         incrementConstrainst();
+
+        reconfigureWidgets();
+
+
 
         add(mainPanel);
         add(browsingPanel);
@@ -131,6 +136,10 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
 
         matchDetailsPanel.updatePanel(newMatch);
 
+        teleopOwnAllianceSwitchBricks.setValue(newMatch.getBlocksOnOwnSwitch());
+        teleopOppositeAllianceSwitchBricks.setValue(newMatch.getBlocksOnOppositeSwitch());
+        teleopScaleBricks.setValue(newMatch.getBlocksOnScale());
+        teleopVaultBricks.setValue(newMatch.getBlocksInVault());
 
         //REMOVE THESE METHODS AND ENACT THE WRATH OF CHITULU
         revalidate();
@@ -185,14 +194,24 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
      * This method saves the values from our widgets to the current match
      */
     private void saveMatch(){
+
         Match currentMatch = FileManager.currentMatches.get(currentMatchIndex);
+
 
         //Match Details Panel
         currentMatch.setMatchNum(Integer.valueOf(matchDetailsPanel.getValues()[0]));
         currentMatch.setTeamNum(Integer.valueOf(matchDetailsPanel.getValues()[1]));
         currentMatch.setScoutName(matchDetailsPanel.getValues()[2]);
 
+        //currentMatch.setAutoScaleStatus(autoScoringPanel.getResults()[0]);
+        //currentMatch.setAutoSwitchStatus(autoScoringPanel.getResults()[1]);
+        //currentMatch.setAutoSwitchStatus(autoScoringPanel.getResults()[2]);
+
         //Any other Widgets Start Here
+        currentMatch.setBlocksOnOwnSwitch(teleopOwnAllianceSwitchBricks.getValue());
+        currentMatch.setBlocksOnOppositeSwitch(teleopOppositeAllianceSwitchBricks.getValue());
+        currentMatch.setBlocksOnScale(teleopScaleBricks.getValue());
+        currentMatch.setBlocksInVault(teleopVaultBricks.getValue());
 
         // Just a precaution cause Jonathan is paranoid
         FileManager.currentMatches.set(currentMatchIndex, currentMatch);
