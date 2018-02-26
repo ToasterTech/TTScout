@@ -9,25 +9,28 @@ public class Match {
     private String competitionName;
 
     //Stuff for Power Up
-    private int autoScaleStatus,
-            autoSwitchStatus,
-                autoLine,
-                blocksOnOwnSwitch,
-                blocksOnOppositeSwitch,
-                blocksOnScale,
-                blocksInVault,
-                attemptedClimb,
-                completedClimb,
-                parkedOnRamp,
-                pilePowerCube,
-                switchPowerCube,
-                exchangePowerCube,
-                portalPowerCube,
-                defensiveRating,
-                regularFoul,
-                techFoul,
-                yellowCard;
+    private int autoScaleStatus;
+    private int autoSwitchStatus;
+    private int autoLine;
+    private int blocksOnOwnSwitch;
+    private int blocksOnOppositeSwitch;
+    private int blocksOnScale;
+    private int blocksInVault;
+    private int attemptedClimb;
+    private int completedClimb;
+    private int parkedOnRamp;
+    private int supportedAnotherTeam;
 
+    private int pilePowerCube;
+    private int switchPowerCube;
+    private int exchangePowerCube;
+    private int portalPowerCube;
+    private int defensiveRating;
+    private int regularFoul;
+    private int techFoul;
+    private int yellowCard;
+
+    private String matchNotes;
     public Match(){ // SuperCSV Writer
         matchNum = 0;
         teamNum = 0;
@@ -52,6 +55,8 @@ public class Match {
         this.regularFoul            = 0;
         this.techFoul               = 0;
         this.yellowCard             = 0;
+
+        this.matchNotes = "";
 
     }
 
@@ -81,6 +86,8 @@ public class Match {
         this.regularFoul            = 0;
         this.techFoul               = 0;
         this.yellowCard             = 0;
+
+        this.matchNotes = "";
     }
 
     public int getMatchNum() {
@@ -265,5 +272,22 @@ public class Match {
 
     public void setYellowCard(int yellowCard) {
         this.yellowCard = yellowCard;
+    }
+
+    public String getMatchNotes() {
+        return matchNotes;
+    }
+
+    public void setMatchNotes(String matchNotes) {
+        this.matchNotes = matchNotes;
+    }
+
+
+    public int getSupportedAnotherTeam() {
+        return supportedAnotherTeam;
+    }
+
+    public void setSupportedAnotherTeam(int supportedAnotherTeam) {
+        this.supportedAnotherTeam = supportedAnotherTeam;
     }
 }

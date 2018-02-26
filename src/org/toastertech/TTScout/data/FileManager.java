@@ -37,17 +37,17 @@ public class FileManager {
 
     static String[] spreadsheetHeaders = {"Match Number", "Team Number", "Scout Name", "Auto Scale Status", "Auto Switch",
                                             "Auto Line Status", "Blocks on Own Switch", "Blocks On Opposite Switch",
-                                            "Blocks On Scale", "Blocks In Vault", "Attempted Climb", "Completed Climb",
+                                            "Blocks On Scale", "Blocks In Vault", "Attempted Climb", "Completed Climb", "Supported Another Team",
                                             "Parked on Ramp", "Power Cube Pile", "Power Cube from Swtich", "Power Cube from Exchange",
-                                            "Power cube from Portal", "Defensive Rating", "Regular Foul", "Tech Foul", "Yellow Card"};
+                                            "Power cube from Portal", "Defensive Rating", "Regular Foul", "Tech Foul", "Yellow Card", "Match Notes"};
 
     static String[] parameterNames = {"matchNum", "teamNum", "scoutName", "autoScaleStatus", "autoSwitchStatus", "autoLine", "blocksOnOwnSwitch",
                                     "blocksOnOppositeSwitch", "blocksOnScale", "blocksInVault", "attemptedClimb", "completedClimb", "parkedOnRamp",
                                     "pilePowerCube", "switchPowerCube", "exchangePowerCube", "portalPowerCube", "defensiveRating", "regularFoul",
-                                    "techFoul", "yellowCard"};
+                                    "techFoul", "yellowCard", "matchNotes"};
     static CellProcessor[] processors = {new ParseInt(), new ParseInt(), new ConvertNullTo(""), new ParseInt(), new ParseInt(),
             new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(),
-            new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt()};
+            new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ParseInt(), new ConvertNullTo("")};
 
     /**
      * Constructor is private so we can't make instances of this. Instead, we will cass our functions
@@ -107,6 +107,10 @@ public class FileManager {
             currentMatches.add(currentMatch);
 
 
+        }
+
+        if(FileManager.currentMatches.size() == 0){
+            currentMatches.add(new Match());
         }
 
         reader.close();

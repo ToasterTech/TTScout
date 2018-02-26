@@ -27,13 +27,13 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
     MultipleCheckboxPanel climbPanel;
     RatingPanel           defensePanel;
     MultipleCheckboxPanel foulsObtained;
+    LongNotesInputPanel   generalNotesPanel;
 
     BrowsingPanel browsingPanel;
 
     JPanel mainPanel = new JPanel();
 
     public ScoutingScreenFrame(Match match){
-
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //setSize(800, 800);
@@ -53,11 +53,11 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         teleopOppositeAllianceSwitchBricks = new NumberInputPanel("Number of Blocks on Opposite Switch", "Block", 0);
         teleopScaleBricks = new NumberInputPanel("Number of Blocks on Scale", "Block", 0);
         teleopVaultBricks = new NumberInputPanel("Number of Blocks in Vault", "Block", 0);
-        climbPanel = new MultipleCheckboxPanel("Climb Status:", "Attempted Climb", "Climbed", "Parked");
+        climbPanel = new MultipleCheckboxPanel("Climb Status:", "Attempted Climb", "Climbed", "Parked", "Support Another Team");
         powerCubePanel = new MultipleCheckboxPanel( "Location of Power Cube Pickups", "Pile", "Switch", "Exchange", "Portal");
         defensePanel = new RatingPanel(0, 10, "Defensive Rating");
         foulsObtained = new MultipleCheckboxPanel("Fouls Obtained", "Foul", "Tech Foul", "Yellow Card");
-
+        generalNotesPanel = new LongNotesInputPanel(5, 100, "Anything to Add?");
 
         browsingPanel = new BrowsingPanel(this);
 
@@ -106,11 +106,14 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         mainPanel.add(foulsObtained, constraints);
         incrementConstrainst();
 
+
+
         reconfigureWidgets();
 
 
 
         add(mainPanel);
+        add(generalNotesPanel);
         add(browsingPanel);
 
 
@@ -142,12 +145,14 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         teleopVaultBricks.setValue(newMatch.getBlocksInVault());
 
         autoScoringPanel.setResults(newMatch.getAutoScaleStatus(), newMatch.getAutoSwitchStatus(), newMatch.getAutoLine());
-        climbPanel.setResults(newMatch.getAttemptedClimb(), newMatch.getCompletedClimb(), newMatch.getParkedOnRamp());
+        climbPanel.setResults(newMatch.getAttemptedClimb(), newMatch.getCompletedClimb(), newMatch.getParkedOnRamp(),  newMatch.getSupportedAnotherTeam());
         powerCubePanel.setResults(newMatch.getPilePowerCube(), newMatch.getSwitchPowerCube(), newMatch.getExchangePowerCube(), newMatch.getPortalPowerCube());
         foulsObtained.setResults(newMatch.getRegularFoul(), newMatch.getTechFoul(), newMatch.getYellowCard());
 
 
+
         defensePanel.setCurrentRating(newMatch.getDefensiveRating());
+        generalNotesPanel.setText(newMatch.getMatchNotes());
         //REMOVE THESE METHODS AND ENACT THE WRATH OF CHITULU
         revalidate();
         repaint();
@@ -160,6 +165,15 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         switch (e.getActionCommand()){
             case "Previous Match":
                 moveToPreviousMatch();
+                break;
+
+            case "Save Match":
+                saveMatch();
+                try {
+                    FileManager.writeFile();
+                } catch (Exception error){
+                    System.out.println(error.getMessage());
+                }
                 break;
 
             case "Next Match":
@@ -187,8 +201,6 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         if(currentMatchIndex == FileManager.currentMatches.size()-1){
             Match newMatch = new Match();
             FileManager.currentMatches.add(newMatch);
-
-            JOptionPane.showConfirmDialog(new JDialog(), "Creating a New Match"); //Alert that will be removed later
         }
 
         currentMatchIndex += 1;
@@ -227,6 +239,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         currentMatch.setAttemptedClimb(climbPanel.getResults()[0]);
         currentMatch.setCompletedClimb(climbPanel.getResults()[1]);
         currentMatch.setParkedOnRamp(climbPanel.getResults()[2]);
+        currentMatch.setSupportedAnotherTeam(climbPanel.getResults()[3]);
 
         currentMatch.setPilePowerCube(powerCubePanel.getResults()[0]);
         currentMatch.setSwitchPowerCube(powerCubePanel.getResults()[1]);
@@ -238,7 +251,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         currentMatch.setYellowCard(foulsObtained.getResults()[2]);
 
         currentMatch.setDefensiveRating(defensePanel.getCurrentRating());
-
+        currentMatch.setMatchNotes(generalNotesPanel.getText());
         // Just a precaution cause Jonathan is paranoid
         FileManager.currentMatches.set(currentMatchIndex, currentMatch);
 
