@@ -11,11 +11,15 @@ public class LongNotesInputPanel extends JPanel {
     public LongNotesInputPanel(int rows, int cols, String title){
         setLayout(new FlowLayout());
 
+
         mainInputArea = new JTextArea(rows, cols);
-        mainInputArea.setFont(new Font(mainInputArea.getFont().getName(), mainInputArea.getFont().getStyle(), 30));
+        //mainInputArea = new JTextArea();
+        mainInputArea.setFont(new Font(mainInputArea.getFont().getName(), mainInputArea.getFont().getStyle(), 20));
+        mainInputArea.setLineWrap(true);
         setBorder(BorderFactory.createTitledBorder(title));
 
-        add(mainInputArea);
+        add(new JScrollPane(mainInputArea));
+
     }
 
     public String getText(){

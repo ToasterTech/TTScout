@@ -57,7 +57,7 @@ public class ScoutingScreenFrame extends JFrame implements ActionListener, Windo
         powerCubePanel = new MultipleCheckboxPanel( "Location of Power Cube Pickups", "Pile", "Switch", "Exchange", "Portal");
         defensePanel = new RatingPanel(0, 10, "Defensive Rating");
         foulsObtained = new MultipleCheckboxPanel("Fouls Obtained", "Foul", "Tech Foul", "Yellow Card");
-        generalNotesPanel = new LongNotesInputPanel(5, 100, "Anything to Add?");
+        generalNotesPanel = new LongNotesInputPanel(5, 50, "Anything to Add?");
 
         browsingPanel = new BrowsingPanel(this);
 
